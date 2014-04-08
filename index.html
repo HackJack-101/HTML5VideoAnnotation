@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>HTML5 Video Annotation</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="css/main.css" type="text/css">
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/export.js"></script>
+	<script type="text/javascript" src="js/import.js"></script>
+	<script type="text/javascript" src="js/video.js"></script>
+	<script type="text/javascript" src="js/paper.js"></script>
+	<script type="text/paperscript" src="js/canvas.js" canvas="canvas"></script>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/hot-sneaks/jquery-ui.min.css" />
+    </head>
+    <body id="body">
+	<div id="videoContext">
+	    <video id="videoPlayer" width="1000" height="1000">
+		<source src="videos/video2.mp4" type="video/mp4" />
+	    </video>
+	    <canvas id="canvas" width="1000" height="1000"></canvas>
+	</div>
+
+	<progress id="playBar" value="0" max="100"></progress>
+	<div id="buttonbar">
+	    <button id="play" onclick="play();" class="fa fa-play" title="Play/Pause"></button>
+	    <button id="restart" onclick="restart();" class="fa fa-stop" title="Restart"></button> 
+	    <button id="rew" onclick="skipValue(-10);" class="fa fa-backward" title="10-Second Rewind"></button>
+	    <button id="fastFwd" onclick="skipValue(10);" class="fa fa-forward" title="10-Second Forward"></button>
+	    <button id="previousFrame" onclick="previousFrame();" class="fa fa-step-backward" title="Previous frame"></button>
+	    <button id="nextFrame" onclick="nextFrame();" class="fa fa-step-forward" title="Next frame"></button>
+	    <button id="previousFrameBlock" onclick="previousFrameBlock();" class="fa fa-fast-backward" title="Previous frame block"></button>
+	    <button id="nextFrameBlock" onclick="nextFrameBlock();" class="fa fa-fast-forward" title="Next frame block"></button>
+	    <div style="float: right">
+		<span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>:<span id="subFrames">00</span>
+		<button id="mute" onclick="mute();" class="fa fa-volume-up" title="Mute/Unmute"></button>
+	    </div>
+	</div>
+	<div>
+	    Frame #<span id="frameCounter">0</span><br/>
+	    Decoded frames: <span id="decodedFrames">0</span><br/>
+	    Dropped frames: <span id="droppedFrames">0</span><br/>
+	</div>
+	<div class="features">
+	    <div class="advanced">
+		<h4>Copy-Paste:</h4>
+		<button onclick="window.paper.tool.copyLayer()">Duplicate the previous frame</button>
+		<h4>Advanced video settings :</h4>
+		<label for="startFrame">Jump to frame #</label><input type="text" value="0" id="startFrame"/>
+		<button id="submitStartFrame" onclick="skip();">Submit</button>
+		<br/>
+		<label for="playRate">Play rate of the video :</label> <input type="text" value="1.0" id="playRate"/>
+		<button id="submitStartTime" onclick="playRate();">Submit</button>
+		<br/>
+		<label for="frameBlock">Length of a frame block :</label> <input type="text" value="15" id="frameBlock"/>
+		<button id="submitStartTime" onclick="defineFrameBlock();">Submit</button>
+	    </div>
+	    <div class="importExport">
+		<h4>Import annotation file :</h4>
+		<input type='file' accept='text/xml' onchange='importXML(event)'>
+		<h4>Export annotations :</h4>
+		<button id="export" onclick="window.paper.tool.exportXML();">Open XML file</button>
+	    </div>
+
+	</div>
+
+	<h4>List of annotated frames</h4>
+	<p id="allocatedFrames"></p>
+
+	<p style="text-align: center">
+	    This application works only on those following browsers : 
+	    <a href="http://www.google.fr/intl/fr/chrome/browser/">Google Chrome</a> and <a href="http://www.chromium.org/Home">Chromium</a>.
+	    <br/>
+	    If you use Windows, it also works on Firefox and Internet Explorer 11.
+	</p>
+
+	<!-- annotations modalbox -->
+	<div id="dialog" title="Annotation">
+	    <input type="text" id="annotation" style="width:98%"/>
+	    <br>
+	    <button onclick="closeModalBox()">Submit</button>
+	</div>
+
+    </body>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
+</html>

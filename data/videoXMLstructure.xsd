@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VALIDE: http://www.utilities-online.info/xsdvalidation/?save=6c8c9088-d90b-4c85-8b05-14a44bd7c2f1-xsdvalidation -->
+
+<!-- 
+
+Le shéma xml contrôle:
+- que les "id" (category) de catégories soient uniques
+- que les "categoryId" (boundingBox) facent référence à des "id" de catégories valides
+- que le type des nombres (entiers ou décimaux) soit corrects
+	- video@width: entier
+	- video@height: entier
+	- video@framerate: décimal
+	- boundingBox@frameNumber: entier
+	- boundingBox/x: entier
+	- boundingBox/y: entier
+	- boundingBox/width: entier
+	- boundingBox/height: entier
+
+Le shéma xml ne contrôle PAS:
+- si deux bounding box situés sur une même frame appartiennent à un mpeme catégorie (non souhaité)
+
+ -->
+
+<!-- SCHEMA XML -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<!-- type vidéo -->
+	<xs:element name="video">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="categories">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="category" maxOccurs="unbounded"
+								minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="boundingBoxes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="boundingBox" maxOccurs="unbounded"
+								minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="width" type="xs:int" use="required"></xs:attribute>
+			<xs:attribute name="heigth" type="xs:int" use="required"></xs:attribute>
+			<xs:attribute name="framerate" type="xs:decimal" use="required"></xs:attribute>
+		</xs:complexType>
+		<xs:key name="catKey">
+			<xs:selector xpath="categories/category" />
+			<xs:field xpath="@id" />
+		</xs:key>
+		<xs:keyref name="catKeyRef" refer="catKey">
+			<xs:selector xpath="boundingBoxes/boundingBox" />
+			<xs:field xpath="@categoryId" />
+		</xs:keyref>
+	</xs:element>
+
+	<!-- sous-type catégorie -->
+	<xs:element name="category">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:int" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- sous-type boundingBox -->
+	<xs:element name="boundingBox">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="x" type="xs:int"></xs:element>
+				<xs:element name="y" type="xs:int"></xs:element>
+				<xs:element name="width" type="xs:int"></xs:element>
+				<xs:element name="height" type="xs:int"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="categoryId" type="xs:int" use="required"></xs:attribute>
+			<xs:attribute name="frameNumber" type="xs:int" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>
+<!-- FIN SCHEMA XML -->

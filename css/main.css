@@ -1,0 +1,120 @@
+#canvas
+{
+    background: transparent;
+    position: absolute;
+}
+
+#videoPlayer
+{
+    position: absolute;
+}
+
+#videoContext
+{
+    position: relative;
+}
+
+.button, .button:hover, .button:visited
+{
+    display: inline-block;
+    background: rgb(201, 201, 201);
+    border: 1px solid grey;
+    font-size: 1em;
+    color: black;
+    font-weight: normal;
+    text-decoration: none;
+    padding: 0.1em;
+    margin: 0.1em;
+}
+
+label, input[type="text"]
+{
+    display: inline-block;
+}
+body
+{
+    width: 1000px;
+    margin: auto;
+}
+
+#buttonbar
+{
+    text-align: left;
+    background: black;
+    margin-top: -5px;
+    padding: 3px;
+    color: white;
+}
+
+#buttonbar button
+{
+    color: white;
+    font-size: 1em;
+    background: transparent;
+    border: none;
+}
+
+progress 
+{
+    display: block;
+	width: 100%;
+	border-radius: 0px;
+	border: none;
+	height: 20px;
+	margin: 0px;
+	padding: 0px;
+	vertical-align: top;
+	box-sizing: border-box;
+}
+
+progress::-webkit-progress-bar 
+{
+    background:#858585;
+}
+progress::-webkit-progress-value 
+{
+    background:#A60000;
+}  
+progress::-moz-progress-bar 
+{
+    background:#A60000;
+}
+
+input[type="text"]
+{
+    width: 3em;
+}
+
+input[type="button"], button
+{
+    border: 1px solid grey;
+    background-color: rgb(201, 201, 201);
+}
+
+input[type="button"]:hover , button:hover
+{
+    cursor: pointer
+}
+
+#shotBank a
+{
+    margin: 0 5px 0 5px;
+}
+
+.features
+{
+	display: block;
+	width: 100%;
+}
+
+.advanced
+{
+	display: inline-block;
+	width: 45%;
+}
+.importExport
+{
+	display: inline-block;
+	float: right;
+	width: 45%;
+}
