@@ -24,5 +24,7 @@ https://github.com/Jack3113/HTML5VideoAnnotation/
 | S             | Export or save the annotation file                    |
 | Delete        | Remove the selected element with its annotation       |
 | C             | Duplicate the previous annotated frame (i.e. layer)   |
+| Q             | Jump to previous frame block                          |
+| D             | Jump to next frame block                              |
 | N             | (Debug) Edit category                                 |
 | T             | (Debug) Display project log on Javascript console     |
