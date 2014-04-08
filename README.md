@@ -4,7 +4,7 @@ HTML5VideoAnnotation
 
 ### Installation
 1. You have to install a web server like Apache on the machine
-2. You have to access to the index.html with the web server, with a HTPP url like "http://localhost/project/index.html".
+2. You have to access to the index.html with the web server, with a HTTP url like "http://localhost/project/index.html".
 
 ### Utilisation
 1. Move your mp4 video file into the videos folder
