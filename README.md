@@ -1,6 +1,9 @@
 HTML5VideoAnnotation
 ====================
 
+https://github.com/Jack3113/HTML5VideoAnnotation/
+
+
 
 ### Installation
 1. You have to install a web server like Apache on the machine
