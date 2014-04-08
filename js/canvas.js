@@ -368,6 +368,12 @@ function onKeyDown(event)
 			case 's':
 				tool.exportXML();
 				break;
+			case 'q':
+				window.previousFrameBlock();
+				break;
+			case 'd':
+				window.nextFrameBlock();
+				break;
 			case 'c':
 				tool.copyLayer();
 				break;
