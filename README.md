@@ -16,7 +16,7 @@ HTML5VideoAnnotation
 ### Hotkeys
 
 | Keys          | Action                                                | 
-| ------------- |------------------------------------------------------:|
+|:-------------:|:------------------------------------------------------|
 | P             | Play/Pause the video                                  |
 | S             | Export or save the annotation file                    |
 | Delete        | Remove the selected element with its annotation       |
